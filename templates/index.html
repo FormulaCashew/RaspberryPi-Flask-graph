@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Temperature Over Time</h2>
+    <canvas id="tempChart" width="800" height="400"></canvas>
+
+    <script>
+        const ctx = document.getElementById('tempChart').getContext('2d');
+        let chart;
+
+        async function fetchDataAndUpdateChart() {
+            try {
+                const response = await fetch('/api/data');
+                const data = await response.json();
+
+                const labels = data.map(entry => entry.date);
+                const temps = data.map(entry => entry.temperature);
+
+                if (!chart) {
+                    chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Temperature (°C)',
+                                data: temps,
+                                borderColor: 'rgb(255, 99, 132)',
+                                tension: 0.1,
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                x: {
+                                    ticks: { maxRotation: 90, minRotation: 45 }
+                                },
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    chart.data.labels = labels;
+                    chart.data.datasets[0].data = temps;
+                    chart.update();
+                }
+            } catch (err) {
+                console.error("Error fetching data:", err);
+            }
+        }
+
+        // Initial load
+        fetchDataAndUpdateChart();
+
+        // Auto-update every 10 seconds
+        setInterval(fetchDataAndUpdateChart, 1000);
+    </script>
+	<a href="/table">View Data Table</a>
+</body>
+</html>
+
