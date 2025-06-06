@@ -5,7 +5,7 @@ This project is a lightweight web application that runs on a Raspberry Pi using 
 ---
 
 ## File Structure
-
+```
 project/
 ├── app.py
 ├── data.txt
@@ -13,8 +13,7 @@ project/
 │ └── index.html
 ├── static/ # (optional, for extra CSS/JS)
 └── README.md
-
----
+```
 
 ## Requirements
 
