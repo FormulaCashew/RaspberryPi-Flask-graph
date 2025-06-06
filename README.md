@@ -12,8 +12,7 @@ project/
 ├── templates/
 │ └── index.html
 ├── static/ # (optional, for extra CSS/JS)
-└── README.mdFile Structure
-
+└── README.md
 
 ---
 
@@ -37,11 +36,11 @@ Date,Temperature
 2025-06-05 11:00:10,48
 ...
 
-Use comma-separated values
+- Use comma-separated values
 
-Each line contains a datetime and a temperature (°C)
+- Each line contains a datetime and a temperature (°C)
 
-The first line is the header
+- The first line is the header
 
 ## Run the app
 ```bash
@@ -58,8 +57,8 @@ http://<your-raspberry-pi-ip>:5000
 # What it does
 Reads and parses data.txt
 
- Displays a line chart (datetime vs temperature)
+- Displays a line chart (datetime vs temperature)
 
- Shows a data table with all records
+- Shows a data table with all records
 
- Responsive frontend with Bootstrap + Chart.js
+- Responsive frontend with Bootstrap + Chart.js
